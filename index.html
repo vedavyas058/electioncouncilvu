@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Student Council Election</title>
+  <link rel="stylesheet" href="file:///C:/Users/vignan/Desktop/g67/ele.css"> 
+</head>
+<body>
+  <div class="sidebar">
+    <img src="C:/Users/vignan/Desktop/g67/images/logo.jpg" alt="Vignan University Logo">
+    <h2>Menu</h2>
+    <ul>
+      <li id="home" onclick="showSection('home')">Home</li>
+      <li id="election" onclick="showSection('election')">Election</li>
+      <li>Academics</li>
+      <li>Admissions</li>
+      <li>Student Portal</li>
+      <li>VIMS Portal</li>
+      <li><a href="file:///C:/Users/vignan/Desktop/g67/about.html">About Us</a></li>
+    </ul>
+  </div>
+
+  <!-- HOME SECTION -->
+  <div class="content" id="home">
+    <img src="C:/Users/vignan/Desktop/g67/images/students.jpg" alt="Students Image" style="width:100%; max-height:400px;">
+    <h2>Admission Open for 2025</h2>
+    <p>
+      Join **Vignan's Foundation for Science, Technology & Research** and be part of a leading university. 
+      We offer undergraduate and postgraduate programs in engineering, management, and applied sciences.
+      Enroll now to shape your future with **world-class education**.
+    </p>
+  </div>
+
+  <!-- ELECTION SECTION -->
+  <div class="content hidden" id="election">
+    <div class="card">
+      <h1>Student Council Election</h1>
+      <p>Click below to proceed with the voting process.</p>
+      <button class="hollow-button" onclick="startElection()">Proceed to Vote</button>
+    </div>
+    
+    <div class="content hidden" id="voting">
+      <div class="card">
+        <h1>Vote for Your Candidate</h1>
+        <ul class="candidate-list">
+          <li class="candidate-item" onclick="startVoting('A Vivek')">A Vivek</li>
+          <li class="candidate-item" onclick="startVoting('B Harshit')">B Harshit</li>
+          <li class="candidate-item" onclick="startVoting('C Priya')">C Priya</li>
+          <li class="candidate-item" onclick="startVoting('D Nithin')">D Nithin</li>
+        </ul>
+        <p id="message" class="message"></p>
+        <button class="hollow-button" onclick="viewResults()">View Results (Admin Only)</button>
+      </div>
+    </div>
+
+    <!-- JavaScript for Election (Only Runs in Election Section) -->
+    <script>
+      let votes = {};
+      let candidates = ['A Vivek', 'B Harshit', 'C Priya', 'D Nithin'];
+
+      function showSection(sectionId) {
+        let sections = document.querySelectorAll(".content");
+        sections.forEach(section => section.classList.add("hidden"));
+        document.getElementById(sectionId).classList.remove("hidden");
+      }
+
+      function startElection() {
+        document.getElementById("voting").classList.remove("hidden");
+      }
+
+      function startVoting(candidate) {
+        let section = prompt("Enter your section (A-Z):").toUpperCase();
+        let rollNumber = prompt("Enter your roll number (1-99):");
+
+        if (!section.match(/^[A-Z]$/) || !rollNumber.match(/^[1-9][0-9]?$/)) {
+          alert("Invalid section or roll number. Please try again.");
+          return;
+        }
+
+        const studentId = `231FA04${section}${rollNumber.padStart(2, '0')}`;
+        if (votes[studentId]) {
+          alert("You have already voted!");
+          return;
+        }
+
+        votes[studentId] = { candidate, section, rollNumber };
+        alert(`Your vote for ${candidate} has been recorded under ID: ${studentId}`);
+        document.getElementById("message").innerText = `You voted for ${candidate}. Thank you!`;
+      }
+
+      function viewResults() {
+        let password = prompt("Enter admin password:");
+        if (password === "vucse") {
+          let results = {};
+          candidates.forEach(candidate => results[candidate] = 0);
+
+          for (let voter in votes) {
+            results[votes[voter].candidate]++;
+          }
+
+          let resultMessage = "Election Results:\n";
+          for (const candidate in results) {
+            resultMessage += `${candidate}: ${results[candidate]} votes\n`;
+          }
+          alert(resultMessage);
+        } else {
+          alert("Access denied. Incorrect password.");
+        }
+      }
+    </script>
+
+  </div>
+
+</body>
+</html>

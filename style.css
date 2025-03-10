@@ -1,0 +1,113 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to right, #ff7e5f, #feb47b); /* Updated theme color */
+  margin: 0;
+  color: white;
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 220px;
+  background: rgba(255, 255, 255, 0.9); /* Changed to white with some transparency */
+  color: black; /* Text color changed to black for better contrast */
+  padding: 20px;
+  overflow-y: auto;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar img {
+  position: absolute;
+  top: 20px;  /* Space from top */
+  left: 20px; /* Space from left */
+  width: 120px;  /* Increased logo size */
+  height: auto;
+}
+
+.sidebar h2 {
+  font-size: 24px;
+  margin-top: 140px; /* Adjusted space after the logo */
+  margin-bottom: 30px;
+  text-align: center;
+  color: black; /* Text color adjusted */
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 12px 15px;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: background 0.3s;
+  border-radius: 8px;
+  color: black; /* Text color changed to black */
+}
+
+.sidebar ul li:hover {
+  background: rgba(0, 0, 0, 0.1); /* Subtle hover effect */
+  color: #007bff; /* Text color on hover */
+}
+
+.content {
+  margin-left: 240px;
+  padding: 40px;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  color: black;
+  text-align: center;
+  max-width: 500px;
+  margin: auto;
+}
+
+.hollow-button {
+  background: transparent;
+  border: 2px solid #007bff;
+  color: #007bff;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.hollow-button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.candidate-item {
+  padding: 15px;
+  margin: 15px 0;
+  background-color: #f3f3f3;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  border: 2px solid #007bff;
+  text-align: center;
+}
+
+.candidate-item:hover {
+  background-color: #d1e7ff;
+  border-color: #007bff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+.hidden {
+  display: none;
+}
+
+.message {
+  margin-top: 20px;
+  font-weight: bold;
+  color: #28a745;
+}
