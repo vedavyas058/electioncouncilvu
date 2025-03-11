@@ -1,118 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Student Council Election</title>
-  <link rel="stylesheet" href="file:///C:/Users/vignan/Desktop/g67/ele.css"> 
-</head>
-<body>
-  <div class="sidebar">
-    <img src="C:/Users/vignan/Desktop/g67/images/logo.jpg" alt="Vignan University Logo">
-    <h2>Menu</h2>
-    <ul>
-      <li id="home" onclick="showSection('home')">Home</li>
-      <li id="election" onclick="showSection('election')">Election</li>
-      <li>Academics</li>
-      <li>Admissions</li>
-      <li>Student Portal</li>
-      <li>VIMS Portal</li>
-      <li><a href="file:///C:/Users/vignan/Desktop/g67/about.html">About Us</a></li>
-    </ul>
-  </div>
+<html>
+  <head>
+    <title>Vignan University Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- HOME SECTION -->
-  <div class="content" id="home">
-    <img src="C:/Users/vignan/Desktop/g67/images/students.jpg" alt="Students Image" style="width:100%; max-height:400px;">
-    <h2>Admission Open for 2025</h2>
-    <p>
-      Join **Vignan's Foundation for Science, Technology & Research** and be part of a leading university. 
-      We offer undergraduate and postgraduate programs in engineering, management, and applied sciences.
-      Enroll now to shape your future with **world-class education**.
-    </p>
-  </div>
+    <!-- Bootstrap CSS (Replaces W3.CSS) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
-  <!-- ELECTION SECTION -->
-  <div class="content hidden" id="election">
-    <div class="card">
-      <h1>Student Council Election</h1>
-      <p>Click below to proceed with the voting process.</p>
-      <button class="hollow-button" onclick="startElection()">Proceed to Vote</button>
-    </div>
-    
-    <div class="content hidden" id="voting">
-      <div class="card">
-        <h1>Vote for Your Candidate</h1>
-        <ul class="candidate-list">
-          <li class="candidate-item" onclick="startVoting('A Vivek')">A Vivek</li>
-          <li class="candidate-item" onclick="startVoting('B Harshit')">B Harshit</li>
-          <li class="candidate-item" onclick="startVoting('C Priya')">C Priya</li>
-          <li class="candidate-item" onclick="startVoting('D Nithin')">D Nithin</li>
-        </ul>
-        <p id="message" class="message"></p>
-        <button class="hollow-button" onclick="viewResults()">View Results (Admin Only)</button>
+    <!-- Google Fonts Alternative (Poppins instead of Raleway) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
+
+    <!-- FontAwesome 6 (Latest Version) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- External Local CSS File -->
+    <link rel="stylesheet" href="file:///C:/Users/DELL/OneDrive/Desktop/pro/temp.css">
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow">
+      <div class="container">
+        <a class="navbar-brand" href="javascript:void(0)" onclick="showHome()">
+          <img src="./images/vu_logo" alt="Vignan University Logo" height="50">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="showHome()">HOME</a></li>
+            <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="showElections()">ELECTIONS</a></li>
+            <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="showAdmissions()">ADMISSIONS</a></li>
+            <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="showContact()">CONTACT</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
+    </nav>
 
-    <!-- JavaScript for Election (Only Runs in Election Section) -->
-    <script>
-      let votes = {};
-      let candidates = ['A Vivek', 'B Harshit', 'C Priya', 'D Nithin'];
+    <!-- Home Section -->
+    <header class="d-flex align-items-center text-white bg-dark" style="height: 100vh; background: url('./images/home_page.jpg') center/cover no-repeat;">
+      <div class="container text-start">
+        <h1 class="display-3">Welcome to Vignan University</h1>
+        <p class="lead">Excellence in education, research, and innovation.</p>
+        <button class="btn btn-light btn-lg mt-3" onclick="showAdmissions()">Apply for Admissions</button>
+      </div>
+    </header>
 
-      function showSection(sectionId) {
-        let sections = document.querySelectorAll(".content");
-        sections.forEach(section => section.classList.add("hidden"));
-        document.getElementById(sectionId).classList.remove("hidden");
-      }
+    <!-- Elections Section -->
+    <section class="container my-5 d-none" id="electionsSection">
+      <div class="card p-4 shadow">
+        <h2 class="text-center">Student Council Election</h2>
+        <p class="text-center">Select a candidate to vote:</p>
+        <ul class="list-group">
+          <li class="list-group-item btn" onclick="startVoting('A Vivek')">A Vivek</li>
+          <li class="list-group-item btn" onclick="startVoting('B Harshit')">B Harshit</li>
+          <li class="list-group-item btn" onclick="startVoting('C Priya')">C Priya</li>
+          <li class="list-group-item btn" onclick="startVoting('D Nithin')">D Nithin</li>
+        </ul>
+        <p id="message" class="text-center mt-3"></p>
+        <button class="btn btn-dark w-100 mt-3" onclick="viewResults()">View Results (Admin Only)</button>
+      </div>
+    </section>
 
-      function startElection() {
-        document.getElementById("voting").classList.remove("hidden");
-      }
+    <!-- Contact Section -->
+    <section class="container my-5 d-none" id="contact">
+      <h2 class="text-center">Contact Us</h2>
+      <p class="text-center">Let's get in touch.</p>
+      <div class="row">
+        <div class="col-md-6">
+          <p><i class="fas fa-map-marker-alt"></i> GUNTUR, AP, IND</p>
+          <p><i class="fas fa-phone"></i> +91-863-2344 700 / 701</p>
+          <p><i class="fas fa-envelope"></i> info@vignan.ac.in</p>
+        </div>
+        <div class="col-md-6">
+          <form>
+            <input type="text" class="form-control mb-3" placeholder="Name" required>
+            <input type="email" class="form-control mb-3" placeholder="Email" required>
+            <textarea class="form-control mb-3" placeholder="Message" required></textarea>
+            <button class="btn btn-dark w-100" type="submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
 
-      function startVoting(candidate) {
-        let section = prompt("Enter your section (A-Z):").toUpperCase();
-        let rollNumber = prompt("Enter your roll number (1-99):");
+    <!-- Footer -->
+    <footer class="text-center bg-dark text-white py-4">
+      <p>&copy; 2025 Vignan University. All rights reserved.</p>
+      <div>
+        <a href="https://www.facebook.com/vignanuniversity" target="_blank"><i class="fab fa-facebook-f mx-2"></i></a>
+        <a href="https://www.instagram.com/vignanuniversity" target="_blank"><i class="fab fa-instagram mx-2"></i></a>
+        <a href="https://twitter.com/vignanuniversity" target="_blank"><i class="fab fa-twitter mx-2"></i></a>
+        <a href="https://www.linkedin.com/school/vignanuniversity" target="_blank"><i class="fab fa-linkedin mx-2"></i></a>
+      </div>
+    </footer>
 
-        if (!section.match(/^[A-Z]$/) || !rollNumber.match(/^[1-9][0-9]?$/)) {
-          alert("Invalid section or roll number. Please try again.");
-          return;
-        }
-
-        const studentId = `231FA04${section}${rollNumber.padStart(2, '0')}`;
-        if (votes[studentId]) {
-          alert("You have already voted!");
-          return;
-        }
-
-        votes[studentId] = { candidate, section, rollNumber };
-        alert(`Your vote for ${candidate} has been recorded under ID: ${studentId}`);
-        document.getElementById("message").innerText = `You voted for ${candidate}. Thank you!`;
-      }
-
-      function viewResults() {
-        let password = prompt("Enter admin password:");
-        if (password === "vucse") {
-          let results = {};
-          candidates.forEach(candidate => results[candidate] = 0);
-
-          for (let voter in votes) {
-            results[votes[voter].candidate]++;
-          }
-
-          let resultMessage = "Election Results:\n";
-          for (const candidate in results) {
-            resultMessage += `${candidate}: ${results[candidate]} votes\n`;
-          }
-          alert(resultMessage);
-        } else {
-          alert("Access denied. Incorrect password.");
-        }
-      }
-    </script>
-
-  </div>
-
-</body>
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- External JavaScript file -->
+    <script src="./main_content.js"></script>
+  </body>
+</html>
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
